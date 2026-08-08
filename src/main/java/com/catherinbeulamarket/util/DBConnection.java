@@ -1,4 +1,4 @@
-package util;
+package com.catherinbeulamarket.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 

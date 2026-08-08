@@ -1,4 +1,4 @@
-package dao;
+package com.catherinbeulamarket.dao;
 
 import model.User;
 
