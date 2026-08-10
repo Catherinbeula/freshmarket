@@ -1,10 +1,11 @@
 package com.catherinbeulamarket.dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import model.User;
-import util.DBConnection;
+import com.catherinbeulamarket.model.User;
+import com.catherinbeulamarket.util.DBConnection;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -14,7 +15,6 @@ public class UserDAOImpl implements UserDAO {
     public boolean registerUser(User user) {
 
         try {
-
             con = DBConnection.getConnection();
 
             String sql = "INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)";
@@ -43,7 +43,6 @@ public class UserDAOImpl implements UserDAO {
     public User loginUser(String email, String password) {
 
         try {
-
             con = DBConnection.getConnection();
 
             String sql = "SELECT * FROM users WHERE email=? AND password=?";

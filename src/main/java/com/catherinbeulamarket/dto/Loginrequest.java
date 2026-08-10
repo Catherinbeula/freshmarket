@@ -1,6 +1,6 @@
 package com.catherinbeulamarket.dto;
 
-public class Loginrequest {
+public class LoginRequest {
 
     private String email;
     private String password;
@@ -28,5 +28,4 @@ public class Loginrequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
