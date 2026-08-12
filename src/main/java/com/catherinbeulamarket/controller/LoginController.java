@@ -1,6 +1,5 @@
 package com.catherinbeulamarket.controller;
 
-import com.catherinbeulamarket.dto.LoginRequest;
 import com.catherinbeulamarket.model.User;
 import com.catherinbeulamarket.service.LoginService;
 
@@ -17,17 +16,17 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest request) {
+    public String login(
+            @RequestParam String email,
+            @RequestParam String password) {
 
-        if (request.getEmail() == null || request.getEmail().isBlank()
-                || request.getPassword() == null || request.getPassword().isBlank()) {
+        if (email == null || email.isBlank()
+                || password == null || password.isBlank()) {
+
             return "Email and password are required";
         }
 
-        User user = loginService.login(
-                request.getEmail(),
-                request.getPassword()
-        );
+        User user = loginService.login(email, password);
 
         if (user != null) {
             return "Login successful";

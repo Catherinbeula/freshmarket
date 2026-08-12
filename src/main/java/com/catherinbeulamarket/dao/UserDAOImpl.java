@@ -4,18 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.springframework.stereotype.Repository;
+
 import com.catherinbeulamarket.model.User;
 import com.catherinbeulamarket.util.DBConnection;
 
+@Repository
 public class UserDAOImpl implements UserDAO {
-
-    Connection con;
 
     @Override
     public boolean registerUser(User user) {
 
         try {
-            con = DBConnection.getConnection();
+            Connection con = DBConnection.getConnection();
 
             String sql = "INSERT INTO users(name,email,password,role) VALUES(?,?,?,?)";
 
@@ -28,9 +29,10 @@ public class UserDAOImpl implements UserDAO {
 
             int row = ps.executeUpdate();
 
-            if (row > 0) {
-                return true;
-            }
+            ps.close();
+            con.close();
+
+            return row > 0;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,7 +45,7 @@ public class UserDAOImpl implements UserDAO {
     public User loginUser(String email, String password) {
 
         try {
-            con = DBConnection.getConnection();
+            Connection con = DBConnection.getConnection();
 
             String sql = "SELECT * FROM users WHERE email=? AND password=?";
 
@@ -64,8 +66,16 @@ public class UserDAOImpl implements UserDAO {
                 user.setPassword(rs.getString("password"));
                 user.setRole(rs.getString("role"));
 
+                rs.close();
+                ps.close();
+                con.close();
+
                 return user;
             }
+
+            rs.close();
+            ps.close();
+            con.close();
 
         } catch (Exception e) {
             e.printStackTrace();

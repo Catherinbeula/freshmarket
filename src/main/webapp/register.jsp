@@ -7,7 +7,7 @@
 
 <h2>FreshMart Registration</h2>
 
-<form action="register" method="post">
+<form action="/freshmart-1.0/api/freshmarket/register" method="post">
 
     <label>Name:</label>
     <input type="text" name="name" required>

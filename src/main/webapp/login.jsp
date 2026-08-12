@@ -7,7 +7,7 @@
 
 <h2>FreshMart Login</h2>
 
-<form action="login" method="post">
+<form action="/freshmart-1.0/api/auth/login" method="post">
 
     <label>Email:</label>
     <input type="email" name="email" required>
