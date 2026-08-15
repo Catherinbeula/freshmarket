@@ -1,9 +1,7 @@
-<%@ page import="com.catherinbeulamarket.model.User" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FreshMart - Home</title>
+    <title>FreshMart - Products</title>
 
     <style>
         * {
@@ -21,10 +19,10 @@
         .navbar {
             background: #6c4ab6;
             padding: 18px 50px;
+            color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
         }
 
         .logo {
@@ -32,17 +30,7 @@
             font-weight: bold;
         }
 
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .welcome {
-            font-size: 15px;
-        }
-
-        .logout {
+        .back {
             text-decoration: none;
             background: white;
             color: #6c4ab6;
@@ -51,52 +39,33 @@
             font-weight: bold;
         }
 
-        .hero {
+        .title-section {
             text-align: center;
-            padding: 55px 20px;
+            padding: 45px 20px;
             background: #eee7ff;
         }
 
-        .hero h1 {
+        .title-section h1 {
             color: #5b3a9e;
-            font-size: 38px;
-            margin-bottom: 12px;
+            font-size: 36px;
+            margin-bottom: 10px;
         }
 
-        .hero p {
-            font-size: 17px;
+        .title-section p {
             color: #555;
+            font-size: 17px;
         }
 
         .container {
             width: 90%;
             max-width: 1100px;
-            margin: 35px auto;
-        }
-
-        .user-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            margin-bottom: 35px;
-        }
-
-        .user-box h3 {
-            color: #6c4ab6;
-            margin-bottom: 10px;
-        }
-
-        .products-title {
-            text-align: center;
-            color: #5b3a9e;
-            margin-bottom: 25px;
+            margin: 40px auto;
         }
 
         .products {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 22px;
         }
 
         .product {
@@ -108,8 +77,8 @@
         }
 
         .product-icon {
-            font-size: 45px;
-            margin-bottom: 12px;
+            font-size: 50px;
+            margin-bottom: 15px;
         }
 
         .product h3 {
@@ -119,16 +88,28 @@
 
         .product p {
             color: #777;
+            margin-bottom: 18px;
+        }
+
+        .price {
+            color: #6c4ab6;
+            font-size: 20px;
+            font-weight: bold;
             margin-bottom: 15px;
         }
 
-        .shop-btn {
-            display: inline-block;
-            text-decoration: none;
+        .cart-btn {
+            border: none;
             background: #6c4ab6;
             color: white;
-            padding: 9px 18px;
+            padding: 10px 20px;
             border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cart-btn:hover {
+            background: #59399f;
         }
 
         footer {
@@ -139,27 +120,19 @@
             padding: 18px;
         }
 
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
             .products {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 500px) {
+        @media (max-width: 550px) {
             .navbar {
                 padding: 15px 20px;
             }
 
-            .nav-right {
-                gap: 8px;
-            }
-
             .products {
                 grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 30px;
             }
         }
     </style>
@@ -167,62 +140,29 @@
 
 <body>
 
-<%
-    User user = (User) session.getAttribute("user");
-
-    if (user == null) {
-        response.sendRedirect("login.jsp");
-        return;
-    }
-%>
-
-<!-- Navigation Bar -->
 <div class="navbar">
 
     <div class="logo">
         FreshMart
     </div>
 
-    <div class="nav-right">
-        <span class="welcome">
-            Welcome, <%= user.getName() %>
-        </span>
-
-        <a class="logout" href="logout">Logout</a>
-    </div>
+    <a class="back" href="home.jsp">
+        Back to Home
+    </a>
 
 </div>
 
-<!-- Hero Section -->
-<div class="hero">
+<div class="title-section">
 
-    <h1>Fresh Fruits & Vegetables</h1>
+    <h1>Fresh Products</h1>
 
     <p>
-        Fresh quality products delivered for your everyday needs.
+        Choose fresh and healthy products for your everyday needs.
     </p>
 
 </div>
 
 <div class="container">
-
-    <!-- User Information -->
-    <div class="user-box">
-
-        <h3>Your Account</h3>
-
-        <p><strong>Name:</strong> <%= user.getName() %></p>
-
-        <p><strong>Email:</strong> <%= user.getEmail() %></p>
-
-        <p><strong>Role:</strong> <%= user.getRole() %></p>
-
-    </div>
-
-    <!-- Products -->
-    <h2 class="products-title">
-        Our Fresh Products
-    </h2>
 
     <div class="products">
 
@@ -230,28 +170,32 @@
             <div class="product-icon">🍎</div>
             <h3>Fresh Apple</h3>
             <p>Fresh and healthy apples</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
+            <div class="price">₹120 / kg</div>
+            <a class="cart-btn" href="cart.jsp?product=Fresh%20Apple&price=120">Add to Cart</a>
         </div>
 
         <div class="product">
             <div class="product-icon">🍌</div>
             <h3>Fresh Banana</h3>
             <p>Sweet and fresh bananas</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
+            <div class="price">₹60 / kg</div>
+            <a class="cart-btn" href="cart.jsp?product=Fresh%20Banana&price=60">Add to Cart</a>
         </div>
 
         <div class="product">
             <div class="product-icon">🍅</div>
             <h3>Fresh Tomato</h3>
             <p>Fresh vegetables for cooking</p>
-            <a class="shop-btn" href="#">Shop Now</a>
+            <div class="price">₹50 / kg</div>
+            <a class="cart-btn" href="cart.jsp?product=Fresh%20Tomato&price=50">Add to Cart</a>
         </div>
 
         <div class="product">
             <div class="product-icon">🥕</div>
             <h3>Fresh Carrot</h3>
             <p>Healthy and fresh carrots</p>
-            <a class="shop-btn" href="#">Shop Now</a>
+            <div class="price">₹80 / kg</div>
+            <a class="cart-btn" href="cart.jsp?product=Fresh%20Carrot&price=80">Add to Cart</a>
         </div>
 
     </div>

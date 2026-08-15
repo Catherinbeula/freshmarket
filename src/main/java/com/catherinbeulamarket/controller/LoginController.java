@@ -3,9 +3,14 @@ package com.catherinbeulamarket.controller;
 import com.catherinbeulamarket.model.User;
 import com.catherinbeulamarket.service.LoginService;
 
-import org.springframework.web.bind.annotation.*;
+import jakarta.servlet.http.HttpSession;
 
-@RestController
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
 @RequestMapping("/api/auth")
 public class LoginController {
 
@@ -17,21 +22,26 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(
-            @RequestParam String email,
-            @RequestParam String password) {
+            @RequestParam("email") String email,
+            @RequestParam("password") String password,
+            HttpSession session) {
 
         if (email == null || email.isBlank()
                 || password == null || password.isBlank()) {
 
-            return "Email and password are required";
+            return "redirect:/login.jsp";
         }
 
         User user = loginService.login(email, password);
 
         if (user != null) {
-            return "Login successful";
+
+            session.setAttribute("user", user);
+
+            return "redirect:/home.jsp";
         }
 
-        return "Invalid email or password";
+        return "redirect:/login.jsp";
     }
 }
+

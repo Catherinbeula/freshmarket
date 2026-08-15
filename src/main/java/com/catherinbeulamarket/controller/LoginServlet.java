@@ -7,9 +7,23 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
+import com.catherinbeulamarket.dao.UserDAO;
+import com.catherinbeulamarket.dao.UserDAOImpl;
+import com.catherinbeulamarket.model.User;
+import com.catherinbeulamarket.service.LoginService;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+
+    private LoginService loginService;
+
+    @Override
+    public void init() throws ServletException {
+        UserDAO userDAO = new UserDAOImpl();
+        loginService = new LoginService(userDAO);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request,
@@ -26,6 +40,18 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        response.getWriter().println("Login request received");
+        User user = loginService.login(email, password);
+
+        if (user != null) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+
+            response.sendRedirect("home.jsp");
+
+        } else {
+
+            response.getWriter().println("Invalid email or password");
+        }
     }
 }
