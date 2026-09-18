@@ -187,6 +187,7 @@
         <span class="welcome">
             Welcome, <%= user.getName() %>
         </span>
+        <a class="logout" href="my-orders.jsp">My Orders</a>
 
         <a class="logout" href="logout">Logout</a>
     </div>
@@ -244,14 +245,14 @@
             <div class="product-icon">🍅</div>
             <h3>Fresh Tomato</h3>
             <p>Fresh vegetables for cooking</p>
-            <a class="shop-btn" href="#">Shop Now</a>
+            <a class="shop-btn" href="products.jsp">Shop Now</a>
         </div>
 
         <div class="product">
             <div class="product-icon">🥕</div>
             <h3>Fresh Carrot</h3>
             <p>Healthy and fresh carrots</p>
-            <a class="shop-btn" href="#">Shop Now</a>
+            <a class="shop-btn" href="products.jsp">Shop Now</a>
         </div>
 
     </div>

@@ -70,15 +70,18 @@
 
         .product {
             background: white;
-            padding: 25px 15px;
+            padding: 20px 15px 25px;
             text-align: center;
             border-radius: 14px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         }
 
-        .product-icon {
-            font-size: 50px;
-            margin-bottom: 15px;
+        .product-image {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 15px;
         }
 
         .product h3 {
@@ -99,12 +102,12 @@
         }
 
         .cart-btn {
-            border: none;
+            display: inline-block;
+            text-decoration: none;
             background: #6c4ab6;
             color: white;
             padding: 10px 20px;
             border-radius: 20px;
-            cursor: pointer;
             font-weight: bold;
         }
 
@@ -166,36 +169,81 @@
 
     <div class="products">
 
+        <!-- Apple -->
         <div class="product">
-            <div class="product-icon">🍎</div>
+
+            <img class="product-image"
+     src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Apple%20fruit.jpg"
+     alt="Fresh Apple">
+
             <h3>Fresh Apple</h3>
+
             <p>Fresh and healthy apples</p>
+
             <div class="price">₹120 / kg</div>
-            <a class="cart-btn" href="cart.jsp?product=Fresh%20Apple&price=120">Add to Cart</a>
+
+            <a class="cart-btn"
+               href="cart.jsp?product=Fresh%20Apple&price=120">
+                Add to Cart
+            </a>
+
         </div>
 
+        <!-- Banana -->
         <div class="product">
-            <div class="product-icon">🍌</div>
+            <img class="product-image"
+     src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=500&q=80"
+     alt="Fresh Banana">
+            
+
             <h3>Fresh Banana</h3>
+
             <p>Sweet and fresh bananas</p>
+
             <div class="price">₹60 / kg</div>
-            <a class="cart-btn" href="cart.jsp?product=Fresh%20Banana&price=60">Add to Cart</a>
+
+            <a class="cart-btn"
+               href="cart.jsp?product=Fresh%20Banana&price=60">
+                Add to Cart
+            </a>
+
         </div>
 
+        <!-- Tomato -->
         <div class="product">
-            <div class="product-icon">🍅</div>
+            <img class="product-image"
+     src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Tomato.jpg"
+     alt="Fresh Tomato">
+
             <h3>Fresh Tomato</h3>
+
             <p>Fresh vegetables for cooking</p>
+
             <div class="price">₹50 / kg</div>
-            <a class="cart-btn" href="cart.jsp?product=Fresh%20Tomato&price=50">Add to Cart</a>
+
+            <a class="cart-btn"
+               href="cart.jsp?product=Fresh%20Tomato&price=50">
+                Add to Cart
+            </a>
+
         </div>
 
+        <!-- Carrot -->
         <div class="product">
-            <div class="product-icon">🥕</div>
+            <img class="product-image"
+     src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Carrot.jpg"
+     alt="Fresh Carrot">
             <h3>Fresh Carrot</h3>
+
             <p>Healthy and fresh carrots</p>
+
             <div class="price">₹80 / kg</div>
-            <a class="cart-btn" href="cart.jsp?product=Fresh%20Carrot&price=80">Add to Cart</a>
+
+            <a class="cart-btn"
+               href="cart.jsp?product=Fresh%20Carrot&price=80">
+                Add to Cart
+            </a>
+
         </div>
 
     </div>
@@ -203,7 +251,9 @@
 </div>
 
 <footer>
+
     <p>© 2026 FreshMart. All Rights Reserved.</p>
+
 </footer>
 
 </body>

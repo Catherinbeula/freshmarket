@@ -170,6 +170,7 @@
             <input type="password" name="password" required>
 
             <button type="submit">Login</button>
+            <a href="admin-login.jsp">Admin Login</a>
 
         </form>
 
