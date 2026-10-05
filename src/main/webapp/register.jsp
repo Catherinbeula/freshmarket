@@ -178,8 +178,9 @@
             <input type="password" name="password" required>
 
             <label>Role:</label>
-            <select name="role">
+            <select name="role" required>
                 <option value="CUSTOMER">Customer</option>
+                <option value="SELLER">Seller</option>
                 <option value="ADMIN">Admin</option>
             </select>
 

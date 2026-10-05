@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">loose
     <title>FreshMart - Order Successful</title>
 
     <style>
@@ -67,7 +68,8 @@
 
 <div class="success-box">
 
-    <div class="success-icon">✅</div>
+    <div class="success-icon">🎉</div>
+
 
     <h1>Order Placed Successfully!</h1>
     <p><strong>Order ID:</strong> FM2026-001</p>

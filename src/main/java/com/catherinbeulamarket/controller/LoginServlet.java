@@ -47,7 +47,11 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
 
-            response.sendRedirect("home.jsp");
+            if ("SELLER".equals(user.getRole())) {
+                response.sendRedirect("seller.jsp");
+            } else {
+                response.sendRedirect("home.jsp");
+            }
 
         } else {
 

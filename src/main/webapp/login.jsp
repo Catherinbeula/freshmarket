@@ -10,6 +10,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
         }
+
         body {
             min-height: 100vh;
             display: flex;
@@ -106,6 +107,19 @@
             background: #59339d;
         }
 
+        .admin-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #6f42c1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .admin-link:hover {
+            text-decoration: underline;
+        }
+
         .register-link {
             text-align: center;
             margin-top: 22px;
@@ -148,35 +162,58 @@
 <div class="login-container">
 
     <div class="left-section">
+
         <h1>FreshMart</h1>
+
         <p>
             Fresh products,<br>
             fresh choices,<br>
             fresh life.
         </p>
+
     </div>
 
     <div class="right-section">
 
         <h2>Welcome Back!</h2>
-        <p class="subtitle">Login to your FreshMart account</p>
 
-        <form action="/freshmart-1.0/api/auth/login" method="post">
+        <p class="subtitle">
+            Login to your FreshMart account
+        </p>
+
+        <form action="login" method="post">
 
             <label>Email:</label>
-            <input type="email" name="email" required>
+
+            <input type="email"
+                   name="email"
+                   required>
 
             <label>Password:</label>
-            <input type="password" name="password" required>
 
-            <button type="submit">Login</button>
-            <a href="admin-login.jsp">Admin Login</a>
+            <input type="password"
+                   name="password"
+                   required>
+
+            <button type="submit">
+                Login
+            </button>
+
+            <a class="admin-link"
+               href="admin-login.jsp">
+                Admin Login
+            </a>
 
         </form>
 
         <div class="register-link">
+
             Don't have an account?
-            <a href="register.jsp">Create New Account</a>
+
+            <a href="register.jsp">
+                Create New Account
+            </a>
+
         </div>
 
     </div>

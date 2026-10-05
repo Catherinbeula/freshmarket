@@ -1,11 +1,22 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="com.catherinbeulamarket.util.DBConnection" %>
+<%@ page import="com.catherinbeulamarket.model.User" %>
 
 <%
-    if (!"true".equals(session.getAttribute("admin"))) {
-        response.sendRedirect("admin-login.jsp");
+    User user = (User) session.getAttribute("user");
+
+    boolean isAdmin =
+        "true".equals(session.getAttribute("admin"));
+
+    boolean isSeller =
+        user != null && "SELLER".equals(user.getRole());
+
+    if (!isAdmin && !isSeller) {
+        response.sendRedirect("login.jsp");
         return;
     }
 
@@ -15,10 +26,12 @@
 %>
 
 <!DOCTYPE html>
+
 <html>
+
 <head>
 
-    <title>FreshMart - Admin Orders</title>
+    <title>FreshMart - Orders</title>
 
     <style>
 
@@ -130,6 +143,15 @@
                 padding: 15px 20px;
             }
 
+            .orders-box {
+                padding: 15px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+            }
+
         }
 
     </style>
@@ -141,10 +163,11 @@
 <div class="navbar">
 
     <div class="logo">
-        FreshMart Admin
+        <%= isSeller ? "FreshMart Seller" : "FreshMart Admin" %>
     </div>
 
-    <a class="back" href="admin.jsp">
+    <a class="back"
+       href="<%= isSeller ? "seller.jsp" : "admin.jsp" %>">
         Back to Dashboard
     </a>
 
@@ -161,6 +184,7 @@
             <thead>
 
                 <tr>
+
                     <th>Order ID</th>
                     <th>Email</th>
                     <th>Product</th>
@@ -168,6 +192,7 @@
                     <th>Total Price</th>
                     <th>Status</th>
                     <th>Order Date</th>
+
                 </tr>
 
             </thead>
@@ -182,9 +207,9 @@
                     con = DBConnection.getConnection();
 
                     String sql =
-                            "SELECT order_id, email, product, price, quantity, status, order_date " +
-                            "FROM orders " +
-                            "ORDER BY order_date DESC";
+                        "SELECT order_id, email, product, price, quantity, status, order_date " +
+                        "FROM orders " +
+                        "ORDER BY order_date DESC";
 
                     ps = con.prepareStatement(sql);
 
@@ -261,17 +286,26 @@
                 } finally {
 
                     try {
-                        if (rs != null) rs.close();
+
+                        if (rs != null)
+                            rs.close();
+
                     } catch (Exception ignored) {
                     }
 
                     try {
-                        if (ps != null) ps.close();
+
+                        if (ps != null)
+                            ps.close();
+
                     } catch (Exception ignored) {
                     }
 
                     try {
-                        if (con != null) con.close();
+
+                        if (con != null)
+                            con.close();
+
                     } catch (Exception ignored) {
                     }
 
@@ -293,4 +327,5 @@
 </footer>
 
 </body>
+
 </html>

@@ -25,10 +25,12 @@ public class RegisterController extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
 
         if (name == null || name.isBlank()
                 || email == null || email.isBlank()
-                || password == null || password.isBlank()) {
+                || password == null || password.isBlank()
+                || role == null || role.isBlank()) {
 
             response.getWriter().println("All fields are required");
             return;
@@ -39,15 +41,14 @@ public class RegisterController extends HttpServlet {
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
-        user.setRole("USER");
+        user.setRole(role);
 
         boolean registered = userDAO.registerUser(user);
 
         if (registered) {
-            response.getWriter().println("Registration successful");
+            response.sendRedirect("login.jsp");
         } else {
             response.getWriter().println("Registration failed");
         }
     }
 }
-

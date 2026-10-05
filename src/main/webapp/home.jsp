@@ -1,11 +1,19 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.catherinbeulamarket.model.Product" %>
+<%@ page import="com.catherinbeulamarket.dao.ProductDAOImpl" %>
 <%@ page import="com.catherinbeulamarket.model.User" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <title>FreshMart - Home</title>
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -87,6 +95,36 @@
             margin-bottom: 10px;
         }
 
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 350px;
+            padding: 12px 18px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-button {
+            border: none;
+            background: #6c4ab6;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .search-button:hover {
+            background: #59399f;
+        }
+
         .products-title {
             text-align: center;
             color: #5b3a9e;
@@ -140,12 +178,15 @@
         }
 
         @media (max-width: 800px) {
+
             .products {
                 grid-template-columns: repeat(2, 1fr);
             }
+
         }
 
         @media (max-width: 500px) {
+
             .navbar {
                 padding: 15px 20px;
             }
@@ -161,22 +202,51 @@
             .hero h1 {
                 font-size: 30px;
             }
+
+            .search-box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .search-input {
+                width: 90%;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
 <%
+
     User user = (User) session.getAttribute("user");
 
     if (user == null) {
         response.sendRedirect("login.jsp");
         return;
     }
+
+    ProductDAOImpl productDAO=new ProductDAOImpl();
+
+    String search=request.getParameter("search");
+
+    List<Product> products=productDAO.getAllProducts();
+
+    if(search!=null && !search.isBlank()) {
+
+        products.removeIf(p ->
+            !p.getName().toLowerCase().contains(search.toLowerCase())
+        );
+
+    }
+
 %>
 
 <!-- Navigation Bar -->
+
 <div class="navbar">
 
     <div class="logo">
@@ -184,17 +254,29 @@
     </div>
 
     <div class="nav-right">
+
         <span class="welcome">
             Welcome, <%= user.getName() %>
         </span>
-        <a class="logout" href="my-orders.jsp">My Orders</a>
 
-        <a class="logout" href="logout">Logout</a>
+        <a class="logout" href="my-orders.jsp">
+            My Orders
+        </a>
+
+        <a class="logout" href="cart.jsp">
+            My Cart
+        </a>
+
+        <a class="logout" href="logout">
+            Logout
+        </a>
+
     </div>
 
 </div>
 
 <!-- Hero Section -->
+
 <div class="hero">
 
     <h1>Fresh Fruits & Vegetables</h1>
@@ -208,60 +290,112 @@
 <div class="container">
 
     <!-- User Information -->
+
     <div class="user-box">
 
         <h3>Your Account</h3>
 
-        <p><strong>Name:</strong> <%= user.getName() %></p>
+        <p>
+            <strong>Name:</strong>
+            <%= user.getName() %>
+        </p>
 
-        <p><strong>Email:</strong> <%= user.getEmail() %></p>
+        <p>
+            <strong>Email:</strong>
+            <%= user.getEmail() %>
+        </p>
 
-        <p><strong>Role:</strong> <%= user.getRole() %></p>
+        <p>
+            <strong>Role:</strong>
+            <%= user.getRole() %>
+        </p>
 
     </div>
 
+    <!-- Search -->
+
+    <form class="search-box" method="get" action="home.jsp">
+
+        <input
+            class="search-input"
+            type="text"
+            name="search"
+            placeholder="Search products..."
+            value="<%= search != null ? search : "" %>"
+        >
+
+        <button class="search-button" type="submit">
+            Search
+        </button>
+
+    </form>
+
     <!-- Products -->
+
     <h2 class="products-title">
         Our Fresh Products
     </h2>
 
     <div class="products">
 
-        <div class="product">
-            <div class="product-icon">🍎</div>
-            <h3>Fresh Apple</h3>
-            <p>Fresh and healthy apples</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
-        </div>
+        <% for(Product product : products) { %>
 
         <div class="product">
-            <div class="product-icon">🍌</div>
-            <h3>Fresh Banana</h3>
-            <p>Sweet and fresh bananas</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
+
+            <div class="product-icon">
+
+                <img
+                    src="<%= product.getImageUrl() %>"
+                    alt="<%= product.getName() %>"
+                    style="width:100px;height:100px;object-fit:contain;"
+                >
+
+            </div>
+
+            <h3>
+                <%= product.getName() %>
+            </h3>
+
+            <p>
+                <%= product.getCategory() %>
+            </p>
+
+            <% if(product.getStock() > 0) { %>
+
+                <p>
+                    Stock: <%= product.getStock() %>
+                </p>
+
+            <% } else { %>
+
+                <p style="color:#d32f2f;font-weight:bold;">
+                    Out of Stock
+                </p>
+
+            <% } %>
+
+            <p>
+                ₹ <%= product.getPrice() %>
+            </p>
+
+            <a class="shop-btn" href="products.jsp">
+                Shop Now
+            </a>
+
         </div>
 
-        <div class="product">
-            <div class="product-icon">🍅</div>
-            <h3>Fresh Tomato</h3>
-            <p>Fresh vegetables for cooking</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
-        </div>
-
-        <div class="product">
-            <div class="product-icon">🥕</div>
-            <h3>Fresh Carrot</h3>
-            <p>Healthy and fresh carrots</p>
-            <a class="shop-btn" href="products.jsp">Shop Now</a>
-        </div>
+        <% } %>
 
     </div>
 
 </div>
 
 <footer>
+
     <p>© 2026 FreshMart. All Rights Reserved.</p>
+
 </footer>
 
 </body>
+
 </html>
