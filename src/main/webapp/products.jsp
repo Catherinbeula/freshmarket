@@ -316,7 +316,7 @@
 <div class="navbar">
 
     <div class="logo">
-        FreshMart
+        BeulaMart
     </div>
 
     <a class="back" href="home.jsp">
@@ -593,7 +593,7 @@
 <footer>
 
     <p>
-        © 2026 FreshMart. All Rights Reserved.
+        © 2026 BeulaMart. All Rights Reserved.
     </p>
 
 </footer>

@@ -163,7 +163,7 @@
 
     <div class="left-section">
 
-        <h1>FreshMart</h1>
+        <h1>BeulaMart</h1>
 
         <p>
             Fresh products,<br>
@@ -178,7 +178,7 @@
         <h2>Welcome Back!</h2>
 
         <p class="subtitle">
-            Login to your FreshMart account
+            Login to your BeulaMart account
         </p>
 
         <form action="login" method="post">

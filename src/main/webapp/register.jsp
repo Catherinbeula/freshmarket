@@ -153,9 +153,9 @@
 <div class="register-container">
 
     <div class="left-section">
-        <h1>FreshMart</h1>
+        <h1>BeulaMart</h1>
         <p>
-            Join FreshMart today.<br>
+            Join BeulaMart today.<br>
             Shop fresh products<br>
             with ease.
         </p>
@@ -164,7 +164,7 @@
     <div class="right-section">
 
         <h2>Create Account</h2>
-        <p class="subtitle">Register for your FreshMart account</p>
+        <p class="subtitle">Register for your BeulaMart account</p>
 
         <form action="register" method="post">
 

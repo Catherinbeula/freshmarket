@@ -398,15 +398,19 @@
             border-radius:25px;
             font-weight:bold;
         }
+        footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #6c4ab6;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+        
 
-        footer{
-            margin-top:50px;
-            background:#6c4ab6;
-            color:white;
-            text-align:center;
-            padding:18px;
-        }
-
+        
         @media(max-width:700px){
 
             .navbar{
@@ -442,7 +446,7 @@
 <div class="navbar">
 
     <div class="logo">
-        FreshMart
+        BeulaMart
     </div>
 
     <a class="back" href="products.jsp">

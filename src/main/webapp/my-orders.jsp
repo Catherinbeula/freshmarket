@@ -30,10 +30,10 @@ ResultSet rs = null;
 
 <head>
 
-```
+
 <meta charset="UTF-8">
 
-<title>FreshMart - My Orders</title>
+<title>BeulaMart - My Orders</title>
 
 <style>
 
@@ -51,7 +51,7 @@ ResultSet rs = null;
 
     .navbar {
         background: #6c4ab6;
-        padding: 18px 50px;
+        padding: 20px 70px;
         color: white;
         display: flex;
         justify-content: space-between;
@@ -142,14 +142,18 @@ ResultSet rs = null;
     .cancelled {
         color: #777;
     }
-
     footer {
-        margin-top: 50px;
-        background: #6c4ab6;
-        color: white;
-        text-align: center;
-        padding: 18px;
-    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #6c4ab6;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+
 
     @media (max-width: 700px) {
 
@@ -169,7 +173,6 @@ ResultSet rs = null;
     }
 
 </style>
-```
 
 </head>
 
@@ -177,21 +180,21 @@ ResultSet rs = null;
 
 <div class="navbar">
 
-```
+
 <div class="logo">
-    FreshMart
+    BeulaMart
 </div>
 
 <a class="back" href="home.jsp">
-    Back to Home
+          Back to Home
 </a>
-```
+
 
 </div>
 
 <div class="container">
 
-```
+
 <div class="orders-box">
 
     <h1>My Orders</h1>
@@ -355,7 +358,7 @@ ResultSet rs = null;
     </table>
 
 </div>
-```
+
 
 </div>
 
@@ -363,7 +366,7 @@ ResultSet rs = null;
 
 
 <p>
-    © 2026 FreshMart. All Rights Reserved.
+    © 2026 BeulaMart. All Rights Reserved.
 </p>
 
 
