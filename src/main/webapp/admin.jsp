@@ -13,10 +13,9 @@ return;
 
 <head>
 
-```
 <meta charset="UTF-8">
 
-<title>FreshMart - Admin Dashboard</title>
+<title>BeulaMart - Admin Dashboard</title>
 
 <style>
 
@@ -131,7 +130,6 @@ return;
     }
 
 </style>
-```
 
 </head>
 
@@ -141,7 +139,7 @@ return;
 
 
 <div class="logo">
-    FreshMart Admin
+    BeulaMart Admin
 </div>
 
 <a class="logout" href="logout">
@@ -208,7 +206,7 @@ return;
 <footer>
 
 
-<p>© 2026 FreshMart. All Rights Reserved.</p>
+<p>© 2026 BeulaMart. All Rights Reserved.</p>
 
 
 </footer>

@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FreshMart - Admin Login</title>
+    <title>BeulaMart - Admin Login</title>
 
     <style>
         * {
@@ -117,7 +117,7 @@
     <h1>Admin Login</h1>
 
     <p class="subtitle">
-        FreshMart Administration
+        BeulaMart Administration
     </p>
 
     <%

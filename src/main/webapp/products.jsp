@@ -11,7 +11,7 @@
 
 <head>
 
-    <title>FreshMart - Products</title>
+    <title>BeulaMart - Products</title>
 
     <style>
 

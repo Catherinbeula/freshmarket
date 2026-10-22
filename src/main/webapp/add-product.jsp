@@ -19,7 +19,7 @@
 
     <meta charset="UTF-8">
 
-    <title>FreshMart - Add Product</title>
+    <title>BeulaMart - Add Product</title>
 
     <style>
 
@@ -124,7 +124,7 @@
 <div class="navbar">
 
     <div class="logo">
-        FreshMart <%= isSeller ? "Seller" : "Admin" %>
+        BeulaMart <%= isSeller ? "Seller" : "Admin" %>
     </div>
 
     <a class="back"

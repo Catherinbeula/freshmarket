@@ -25,7 +25,7 @@
 
 <head>
 
-    <title>FreshMart - Manage Products</title>
+    <title>BeulaMart - Manage Products</title>
 
     <style>
 

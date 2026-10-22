@@ -31,7 +31,7 @@
 
 <head>
 
-    <title>FreshMart - Orders</title>
+    <title>BeulaMart - Orders</title>
 
     <style>
 
@@ -163,7 +163,7 @@
 <div class="navbar">
 
     <div class="logo">
-        <%= isSeller ? "FreshMart Seller" : "FreshMart Admin" %>
+        <%= isSeller ? "BeulaMart Seller" : "BeulaMart Admin" %>
     </div>
 
     <a class="back"
@@ -322,7 +322,7 @@
 
 <footer>
 
-    <p>© 2026 FreshMart. All Rights Reserved.</p>
+    <p>© 2026 BeulaMart. All Rights Reserved.</p>
 
 </footer>
 

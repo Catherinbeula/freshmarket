@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FreshMart - Admin Users</title>
+    <title>BeulaMart - Admin Users</title>
 
     <style>
         * {
@@ -27,14 +27,21 @@
             font-family: Arial, sans-serif;
         }
 
+        html, body {
+            min-height: 100%;
+        }
+
         body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             background: #f8f5ff;
             color: #333;
         }
 
         .navbar {
             background: #6c4ab6;
-            padding: 18px 50px;
+            padding: 18px 70px;
             color: white;
             display: flex;
             justify-content: space-between;
@@ -59,6 +66,7 @@
             width: 90%;
             max-width: 1000px;
             margin: 40px auto;
+            flex: 1;
         }
 
         .users-box {
@@ -80,8 +88,7 @@
             border-collapse: collapse;
         }
 
-        th,
-        td {
+        th, td {
             padding: 14px;
             text-align: center;
             border-bottom: 1px solid #eee;
@@ -110,16 +117,26 @@
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: auto;
             background: #6c4ab6;
             color: white;
             text-align: center;
             padding: 18px;
+            width: 100%;
         }
 
         @media (max-width: 700px) {
             .navbar {
                 padding: 15px 20px;
+            }
+
+            .container {
+                width: 95%;
+                margin: 25px auto;
+            }
+
+            .users-box {
+                padding: 15px;
             }
         }
     </style>
@@ -128,44 +145,32 @@
 <body>
 
 <div class="navbar">
-
-    <div class="logo">
-        FreshMart Admin
-    </div>
-
-    <a class="back" href="admin.jsp">
-        Back to Dashboard
-    </a>
-
+    <div class="logo">BeulaMart Admin</div>
+    <a class="back" href="admin.jsp">Back to Dashboard</a>
 </div>
 
 <div class="container">
-
     <div class="users-box">
-
         <h1>Registered Users</h1>
 
         <table>
-
             <thead>
                 <tr>
                     <th>User ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Created Date</th>
+                    <th>Role</th>
                 </tr>
             </thead>
 
             <tbody>
-
             <%
                 boolean hasUsers = false;
 
                 try {
                     con = DBConnection.getConnection();
 
-                    String sql = "SELECT user_id, name, email, created_at "
-                               + "FROM users ORDER BY created_at DESC";
+                    String sql = "SELECT id, name, email, role FROM users ORDER BY id DESC";
 
                     ps = con.prepareStatement(sql);
                     rs = ps.executeQuery();
@@ -173,43 +178,35 @@
                     while (rs.next()) {
                         hasUsers = true;
             %>
-
                 <tr>
-                    <td><%= rs.getInt("user_id") %></td>
+                    <td><%= rs.getInt("id") %></td>
                     <td><%= rs.getString("name") %></td>
                     <td><%= rs.getString("email") %></td>
-                    <td><%= rs.getTimestamp("created_at") %></td>
+                    <td><%= rs.getString("role") %></td>
                 </tr>
-
             <%
                     }
 
                     if (!hasUsers) {
             %>
-
                 <tr>
                     <td colspan="4" class="no-users">
                         No registered users found.
                     </td>
                 </tr>
-
             <%
                     }
 
                 } catch (Exception e) {
+                    application.log("Unable to load registered users", e);
             %>
-
                 <tr>
                     <td colspan="4" class="error">
-                        Unable to load registered users.
+                        Unable to load registered users. Please check the database connection.
                     </td>
                 </tr>
-
             <%
-                    e.printStackTrace();
-
                 } finally {
-
                     try {
                         if (rs != null) rs.close();
                     } catch (Exception ignored) {
@@ -226,17 +223,13 @@
                     }
                 }
             %>
-
             </tbody>
-
         </table>
-
     </div>
-
 </div>
 
 <footer>
-    <p>© 2026 FreshMart. All Rights Reserved.</p>
+    <p>© 2026 BeulaMart. All Rights Reserved.</p>
 </footer>
 
 </body>

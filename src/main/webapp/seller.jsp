@@ -14,7 +14,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>FreshMart - Seller Dashboard</title>
+    <title>BeulaMart - Seller Dashboard</title>
 
     <style>
         * {
@@ -143,7 +143,7 @@
 <div class="navbar">
 
     <div class="logo">
-        FreshMart Seller
+        BeulaMart Seller
     </div>
 
     <a class="logout" href="logout">
@@ -216,7 +216,7 @@
 
 <footer>
 
-    <p>© 2026 FreshMart. All Rights Reserved.</p>
+    <p>© 2026 BeulaMart. All Rights Reserved.</p>
 
 </footer>
 
